@@ -24,9 +24,6 @@ public class MyDoctorsCommand implements WorKerCommand{
         if (!update.getMessage().getText().equals(ResourceBundle.getBundle(basename).getString("myDoctors"))){
             return null;
         }
-        if (UserHelper.findUser(update.getMessage().getFrom().getId().toString())!=null){
-            return null;
-        }
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(update.getMessage().getChatId().toString());
         sendMessage.setText(ResourceBundle.getBundle(basename).getString("haveDoctors"));
