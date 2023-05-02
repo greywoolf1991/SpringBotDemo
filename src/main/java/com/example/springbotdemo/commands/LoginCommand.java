@@ -40,7 +40,7 @@ public class LoginCommand implements WorKerCommand{
         userModel.setName(update.getMessage().getFrom().getUserName());
         userModel.setTgId(update.getMessage().getFrom().getId().toString());
         if (update.getMessage().getText().equals(ResourceBundle.getBundle(basename).getString("remainAnonymous"))){
-            sendMessage.setText(ResourceBundle.getBundle(basename).getString("userSavedAs"+update.getMessage().getFrom().getUserName()));
+            sendMessage.setText(ResourceBundle.getBundle(basename).getString("userSavedAs")+" "+update.getMessage().getFrom().getUserName());
             UserHelper.saveUser(userModel);
 
             KeyboardRow keyboardRow = new KeyboardRow();
@@ -50,7 +50,7 @@ public class LoginCommand implements WorKerCommand{
             sendMessage.setReplyMarkup(replyKeyboardMarkup);
         }
         if (update.getMessage().getText().equals(ResourceBundle.getBundle(basename).getString("leaveYourName"))){
-            sendMessage.setText(ResourceBundle.getBundle(basename).getString("userSavedAs"+update.getMessage().getFrom().getFirstName()));
+            sendMessage.setText(ResourceBundle.getBundle(basename).getString("userSavedAs")+" "+update.getMessage().getFrom().getFirstName());
             userModel.setName(update.getMessage().getFrom().getFirstName());
             UserHelper.saveUser(userModel);
 

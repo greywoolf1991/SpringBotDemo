@@ -46,8 +46,8 @@ public class TelegramBot extends TelegramLongPollingBot {
         if (userRepository.findUserModelByTgId(update.getMessage().getFrom().getId().toString())==null){
             k.add(new KeyboardButton(ResourceBundle.getBundle(basename).getString("login")));
         }
-        if (userRepository.findUserModelByTgId(update.getMessage().getFrom().getId().toString()).getDoctorEnum()!=null){
-            k.add(new KeyboardButton(ResourceBundle.getBundle(basename).getString("myDoctors")));
+        if (userRepository.findUserModelByTgId(update.getMessage().getFrom().getId().toString())!=null){
+                k.add(new KeyboardButton(ResourceBundle.getBundle(basename).getString("myDoctors")));
         }
         k.add(new KeyboardButton(ResourceBundle.getBundle(basename).getString("withADoctor")));
         SendMessage sendMessage = new SendMessage();

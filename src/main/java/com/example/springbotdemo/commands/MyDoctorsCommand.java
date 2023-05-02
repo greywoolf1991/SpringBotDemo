@@ -1,7 +1,9 @@
 package com.example.springbotdemo.commands;
 
 import com.example.springbotdemo.helpers.DoctorHelper;
+import com.example.springbotdemo.helpers.UserHelper;
 import com.example.springbotdemo.models.BookModel;
+import com.example.springbotdemo.models.UserModel;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -20,6 +22,9 @@ public class MyDoctorsCommand implements WorKerCommand{
     @Override
     public SendMessage start(Update update) {
         if (!update.getMessage().getText().equals(ResourceBundle.getBundle(basename).getString("myDoctors"))){
+            return null;
+        }
+        if (UserHelper.findUser(update.getMessage().getFrom().getId().toString())!=null){
             return null;
         }
         SendMessage sendMessage = new SendMessage();
