@@ -55,6 +55,7 @@ public class DoctorBookCommand implements WorKerCommand {
         }
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(kR);
+        replyKeyboardMarkup.setOneTimeKeyboard(true);
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
         return sendMessage;
     }

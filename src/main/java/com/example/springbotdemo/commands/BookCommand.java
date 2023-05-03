@@ -42,6 +42,7 @@ public class BookCommand implements WorKerCommand{
 
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(list);
+        replyKeyboardMarkup.setOneTimeKeyboard(true);
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
         sendMessage.setText(ResourceBundle.getBundle(basename).getString("chooseDoctor"));
         return sendMessage;
