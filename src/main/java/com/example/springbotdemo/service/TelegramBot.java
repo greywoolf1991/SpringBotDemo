@@ -3,6 +3,7 @@ package com.example.springbotdemo.service;
 import com.example.springbotdemo.commands.*;
 import com.example.springbotdemo.commands.bookcommands.DoctorBookCommand;
 import com.example.springbotdemo.config.BotConfig;
+import com.example.springbotdemo.helpers.UserHelper;
 import com.example.springbotdemo.repositories.UserRepository;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -49,7 +50,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         if (userRepository.findUserModelByTgId(update.getMessage().getFrom().getId().toString())!=null){
                 k.add(new KeyboardButton(ResourceBundle.getBundle(basename).getString("myDoctors")));
         }
-        k.add(new KeyboardButton(ResourceBundle.getBundle(basename).getString("withADoctor")));
+        if (UserHelper.findUser(update.getMessage().getFrom().getId().toString())!=null) {
+            k.add(new KeyboardButton(ResourceBundle.getBundle(basename).getString("withADoctor")));
+        }
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(update.getMessage().getChatId().toString());
         sendMessage.setText(ResourceBundle.getBundle(basename).getString("selectAnAction"));
